@@ -10,6 +10,6 @@
 
     <select id="insertSingleUser" parameterType="com.gaokao.main.POJO.User" resultType="int">
         insert into user_info (user_id, user_account, user_password, user_grade, user_address, user_sex, user_rank) values
-            (#{user_id}, #{user_account}, #{user_password}, #{user_address}, #{user_grade}, #{user_address}, #{user_sex}, #{user_rank})
+            (#{user_id}, #{user_account}, #{user_password}, #{user_grade}, #{user_address}, #{user_sex}, #{user_rank})
     </select>
 </mapper>

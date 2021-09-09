@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public ResponseData userRegister(User user) {
-//        userMapper.insertSingleUser();
+        userMapper.insertSingleUser(user);
         return ResponseData.ok();
     }
 }

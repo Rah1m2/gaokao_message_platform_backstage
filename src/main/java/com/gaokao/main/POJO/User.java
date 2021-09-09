@@ -1,6 +1,6 @@
 package com.gaokao.main.POJO;
 
-import java.beans.Transient;
+import javax.persistence.Transient;
 import java.util.Arrays;
 
 public class User {
