@@ -13,6 +13,10 @@ public class ResponseData {
         return message;
     }
 
+//    public void setMessage(String message) {
+//        this.message = message;
+//    }
+
     public int getStatus() {
         return status;
     }
@@ -37,6 +41,10 @@ public class ResponseData {
 
     public static ResponseData notFound() {
         return new ResponseData(404, "Not Found");
+    }
+
+    public static ResponseData elemExist() {
+        return new ResponseData(841, "inserted element is exist");
     }
 
     public static ResponseData badRequest() {

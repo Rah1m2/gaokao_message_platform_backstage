@@ -12,5 +12,5 @@ public interface UserMapper {
     List<User> getUserByUserAccount(String user_account);
 
     //插入一条用户信息
-    List insertSingleUser(User user);
+    int insertSingleUser(User user);
 }

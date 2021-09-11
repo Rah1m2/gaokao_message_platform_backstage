@@ -1,6 +1,7 @@
 package com.gaokao.main.Service.Impl;
 
 import com.auth0.jwt.interfaces.Claim;
+import com.gaokao.main.Mapper.AgencyMapper;
 import com.gaokao.main.Mapper.UserMapper;
 import com.gaokao.main.POJO.User;
 import com.gaokao.main.Service.UserService;
@@ -9,6 +10,10 @@ import com.gaokao.main.VO.LoginForm;
 import com.gaokao.main.VO.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.ejb.DuplicateKeyException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +21,15 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     private UserMapper userMapper;
+    private AgencyMapper agencyMapper;
+
+    public UserServiceImpl() {
+    }
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper) {
+    public UserServiceImpl(UserMapper userMapper, AgencyMapper agencyMapper) {
         this.userMapper = userMapper;
+        this.agencyMapper = agencyMapper;
     }
 
     public ResponseData userLogin(LoginForm loginForm) {
@@ -43,7 +53,29 @@ public class UserServiceImpl implements UserService {
     }
 
     public ResponseData userRegister(User user) {
+
+        //插入用户信息到表
+        if (!userMapper.getUserByUserAccount(user.getUser_account()).isEmpty())
+            return ResponseData.elemExist();
         userMapper.insertSingleUser(user);
+
+
+        String[] major_sort = user.getUser_interest();
+
+        List<Map<String,String>> agencyList = new ArrayList<Map<String, String>>();
+
+        //拼接中间表信息到map
+        for (String s : major_sort) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("user_major_id", null);
+            map.put("user_account", user.getUser_account());
+            map.put("major_sort", s);
+            map.put("sort_preference", null);
+            agencyList.add(map);
+        }
+
+        agencyMapper.insertSingleMsg_User_Major(agencyList);
+
         return ResponseData.ok();
     }
 }

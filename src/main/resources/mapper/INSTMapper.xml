@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaokao.main.Mapper.INSTMapper">
+
+    <select id="getDefualtINSTInfo" resultType="com.gaokao.main.POJO.Institution">
+        select * from institution_info
+    </select>
+
+    <select id="getINSTInfoByLabel" parameterType="com.gaokao.main.VO.QueryForm" resultType="com.gaokao.main.POJO.Institution">
+        select * from institution_info
+        <where>
+          <if test="institution_name != ''.toString()">institution_name=#{institution_name}</if>
+          <if test="institution_location != '全部'.toString()">and institution_location=#{institution_location}</if>
+          <if test="institution_type != '全部'.toString()">and institution_type=#{institution_type}</if>
+          <if test="institution_feature != ''.toString()">and institution_feature=#{institution_feature}</if>
+        </where>
+
+    </select>
+
+</mapper>

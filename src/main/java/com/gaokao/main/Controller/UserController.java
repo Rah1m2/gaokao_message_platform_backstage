@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -29,16 +29,12 @@ public class UserController {
 //    }
 
     @RequestMapping(value = "/login")
-    @ResponseBody
     public ResponseData login(LoginForm loginForm) {
         getHeader();
-        System.out.println(loginForm);
-        System.out.println("intercepreter should baned requests from reaching here.");
         return userService.userLogin(loginForm);
     }
 
     @RequestMapping(value = "/register")
-    @ResponseBody
     public ResponseData register(@RequestBody User user) {
         System.out.println("new trial:"+user);
         return userService.userRegister(user);

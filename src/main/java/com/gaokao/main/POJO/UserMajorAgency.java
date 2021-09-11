@@ -1,5 +1,8 @@
 package com.gaokao.main.POJO;
 
+/**
+ * 对应数据库中的UserMajorAgengcy_info表
+ */
 public class UserMajorAgency {
     private int user_major_id;
     private String user_account;
