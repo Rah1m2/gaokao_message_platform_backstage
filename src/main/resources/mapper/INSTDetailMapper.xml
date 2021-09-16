@@ -3,9 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gaokao.main.Mapper.INSTDetailMapper">
+    
+    <sql id="nesting">
+        (
+            select institution_info.institution_name from institution_info
+            where institution_info.institution_id = #{institution_id}
+        )
+    </sql>
 
     <select id="getHomePageById" parameterType="int" resultType="com.gaokao.main.POJO.Institution">
-      select * from institution_info where institution_id=#{institution_id}
+      select * from institution_info where institution_id = #{institution_id}
+    </select>
+
+    <select id="getIntroductionById" parameterType="int" resultType="com.gaokao.main.POJO.Introduction">
+      select * from institution_intro where institution_intro.institution_name = <include refid="nesting"/>
+    </select>
+
+    <select id="getADMRulesById" parameterType="int" resultType="com.gaokao.main.POJO.AdmissionRule">
+        select * from institution_admission_rule where institution_name = <include refid="nesting"/>
+    </select>
+
+    <select id="getACCOMDNById" parameterType="int" resultType="com.gaokao.main.POJO.Accommodation">
+        select * from institution_accommodation where institution_name = <include refid="nesting"/>
+    </select>
+
+    <select id="getScholarshipSet" parameterType="int" resultType="com.gaokao.main.POJO.Scholarship">
+        select * from scholarship_set where institution_name = <include refid="nesting"/>
     </select>
 
 </mapper>

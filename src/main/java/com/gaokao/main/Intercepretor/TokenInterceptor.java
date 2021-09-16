@@ -20,7 +20,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 
-        System.out.println("aiwo");
+        System.out.println("test：计算器token前。");
 
         String token = httpServletRequest.getHeader("token");
 
@@ -39,10 +39,9 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 
         Map<String, Claim> verifiedToken = JWT_Util.verifyToken(token);
 
-        System.out.println("get?2");
+        System.out.println("test：计算token后，进入执行链前。");
 
         verifiedToken.get("token");
-
 
         return true;
     }

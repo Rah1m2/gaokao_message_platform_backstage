@@ -11,4 +11,10 @@ public interface UserService {
 
     //用户注册
     ResponseData userRegister(User user);
+
+    //存储修改后的用户信息
+    ResponseData saveEditedUserInfo(User user);
+
+    //根据token返回用户信息
+    ResponseData getUserInfoByToken(String token);
 }

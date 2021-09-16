@@ -8,8 +8,19 @@
       select * from user_info where user_account=#{user_account}
     </select>
 
+    <select id="getUserINTByUserAccount" parameterType="String" resultType="java.lang.String">
+        select major_sort from user_major_agency where user_account=#{user_account}
+    </select>
+
+    <update id="updateEditedUserInfo" parameterType="com.gaokao.main.POJO.User">
+        update user_info set <if test="user_password != ''.toString()">user_password=#{user_password},</if>  user_grade=#{user_grade}, user_address=#{user_address}, user_sex=#{user_sex}, user_rank=#{user_rank}
+          where user_account=#{user_account}
+
+    </update>
+
     <insert id="insertSingleUser" parameterType="com.gaokao.main.POJO.User">
         insert into user_info (user_account, user_password, user_grade, user_address, user_sex, user_rank) values
             (#{user_account}, #{user_password}, #{user_grade}, #{user_address}, #{user_sex}, #{user_rank})
     </insert>
+
 </mapper>

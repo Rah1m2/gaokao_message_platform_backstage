@@ -19,7 +19,28 @@ public class INSTDetailServiceImpl implements INSTDetailService {
         this.instDetailMapper = instDetailMapper;
     }
 
-    public ResponseData getINSTIntro(int institution_id) {
-        return ResponseData.ok().setData("intro",instDetailMapper.getHomePageById(institution_id));
+    public ResponseData getINSTHomePage(int institution_id) {
+        return ResponseData.ok().setData("main", instDetailMapper.getHomePageById(institution_id));
     }
+
+    public ResponseData getINSTIntro(int institution_id) {
+        return ResponseData.ok().setData("intro", instDetailMapper.getIntroductionById(institution_id));
+    }
+
+    public ResponseData getADMRule(int institution_id) {
+        return ResponseData.ok().setData("ADMRule", instDetailMapper.getADMRulesById(institution_id));
+    }
+
+    public ResponseData getACCOMDN(int institution_id) {
+        return ResponseData.ok().setData("ACCOMDNInfo",instDetailMapper.getACCOMDNById(institution_id));
+    }
+
+    public ResponseData getINSTSCHLRSet(int institution_id) {
+        return ResponseData.ok().setData("SCHLRSet", instDetailMapper.getScholarshipSet(institution_id));
+    }
+
+    public ResponseData getChargingItem(int institution_id) {
+        return null;
+    }
+
 }

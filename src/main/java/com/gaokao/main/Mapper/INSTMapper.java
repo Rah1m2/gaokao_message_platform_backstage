@@ -2,7 +2,6 @@ package com.gaokao.main.Mapper;
 
 import com.gaokao.main.POJO.Institution;
 import com.gaokao.main.VO.QueryForm;
-
 import java.util.List;
 
 public interface INSTMapper {
@@ -12,4 +11,5 @@ public interface INSTMapper {
 
     //获取标签对应的学校信息
     List<Institution> getINSTInfoByLabel(QueryForm queryForm);
+
 }

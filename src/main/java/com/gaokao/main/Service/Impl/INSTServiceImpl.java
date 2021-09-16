@@ -27,7 +27,7 @@ public class INSTServiceImpl implements INSTService {
 
     public ResponseData getDefaultINSTInfo() {
         List<Institution> INSTInfoList = instMapper.getDefualtINSTInfo();
-        return ResponseData.ok().setData("INSTInfoList",INSTInfoList);
+        return ResponseData.ok().setData("INSTInfoList", INSTInfoList);
     }
 
     public ResponseData getINSTInfoByLabel(QueryForm queryForm) {

@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         if (user.isEmpty() || !loginForm.getUser_password().equals(user.get(0).getUser_password()))
             return ResponseData.notFound();
 
-        String token = JWT_Util.createToken("1", loginForm.getUser_account());
+        String token = JWT_Util.createToken(loginForm.getUser_account(), loginForm.getUser_password());
 
         Map<String, Claim> verified_token = JWT_Util.verifyToken(token);
 
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
         System.out.println("verified_token:"+verified_token.get("user_id"));
 
-        return ResponseData.ok().setData("token",token);
+        return ResponseData.ok().setData("token", token);
     }
 
     public ResponseData userRegister(User user) {
@@ -57,9 +57,48 @@ public class UserServiceImpl implements UserService {
         //插入用户信息到表
         if (!userMapper.getUserByUserAccount(user.getUser_account()).isEmpty())
             return ResponseData.elemExist();
+
         userMapper.insertSingleUser(user);
 
+        sealAgency(user);
 
+        return ResponseData.ok();
+    }
+
+    public ResponseData saveEditedUserInfo(User user) {
+
+        userMapper.updateEditedUserInfo(user);
+
+        agencyMapper.deleteAll_User_Major(user.getUser_account());
+
+        sealAgency(user);
+
+        return ResponseData.ok();
+    }
+
+    public ResponseData getUserInfoByToken(String token) {
+
+        //解密token
+        Map<String, Claim> verified_token = JWT_Util.verifyToken(token);
+
+        System.out.println("verified_token.user_id:"+verified_token.get("user_name").asString());
+
+        //从token中获取user_account
+        String user_account = verified_token.get("user_name").asString();
+
+        //从用户表查出用户基本信息
+        List<User> user = userMapper.getUserByUserAccount(user_account);
+
+        //从中间表查询出兴趣专业
+        user.get(0).setUser_interest(userMapper.getUserINTByUserAccount(user_account));
+
+        //密码双向保密
+        user.get(0).setUser_password("");
+
+        return ResponseData.ok().setData("user", user);
+    }
+
+    private void sealAgency(User user) {
         String[] major_sort = user.getUser_interest();
 
         List<Map<String,String>> agencyList = new ArrayList<Map<String, String>>();
@@ -75,7 +114,6 @@ public class UserServiceImpl implements UserService {
         }
 
         agencyMapper.insertSingleMsg_User_Major(agencyList);
-
-        return ResponseData.ok();
     }
+
 }

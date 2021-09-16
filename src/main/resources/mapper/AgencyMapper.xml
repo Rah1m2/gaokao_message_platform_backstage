@@ -3,11 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gaokao.main.Mapper.AgencyMapper">
+
     <insert id="insertSingleMsg_User_Major" parameterType="java.util.Map">
       insert into user_major_agency (user_major_id, user_account, major_sort, sort_preference) values
         <foreach collection="UMAList" item="an" separator=",">
             (#{an.user_major_id},#{an.user_account},#{an.major_sort},#{an.sort_preference})
         </foreach>
     </insert>
+
+    <delete id="deleteAll_User_Major" parameterType="java.lang.String">
+        delete from user_major_agency where user_account=#{user_account}
+    </delete>
 
 </mapper>

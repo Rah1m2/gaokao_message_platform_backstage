@@ -1,13 +1,23 @@
 package com.gaokao.main.Mapper;
 
-import com.gaokao.main.POJO.Institution;
+import com.gaokao.main.POJO.*;
 
 import java.util.List;
 
 public interface INSTDetailMapper {
 
-    //获取详情页面的顶部首页信息
+    //通过id获取详情页面的顶部首页信息
     List<Institution> getHomePageById(int institution_id);
 
-    //获取
+    //通过id获取详情页面的学校简介信息
+    List<Introduction> getIntroductionById(int institution_id);
+
+    //通过id获取详情页面的学校录取规则信息
+    List<AdmissionRule> getADMRulesById(int institution_id);
+
+    //通过id获取详情页面的学校食宿条件信息
+    List<Accommodation> getACCOMDNById(int institution_id);
+
+    //通过id获取学校的奖学金设置
+    List<Scholarship> getScholarshipSet(int institution_id);
 }

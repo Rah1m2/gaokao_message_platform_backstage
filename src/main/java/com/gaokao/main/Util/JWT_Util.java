@@ -14,12 +14,12 @@ public class JWT_Util {
 
     /**
      * 生成token
-     * @param user_id
      * @param user_name
+     * @param user_password
      * @return
      * @expireTime
      */
-    public static String createToken(String user_id, String user_name){
+    public static String createToken(String user_name, String user_password){
         Calendar expireTime = Calendar.getInstance();
         expireTime.add(Calendar.SECOND,604800000);
         // 签发时间
@@ -29,11 +29,11 @@ public class JWT_Util {
         map.put("alg", "HS256");
         map.put("typ", "JWT");
         String token = null; // 加密
-        System.out.println("token >>id" + user_id);
+        System.out.println("token >>id" + user_name);
         token = JWT.create()
                 .withHeader(map)
                 .withClaim("user_name", user_name)
-                .withClaim("user_id", user_id)
+                .withClaim("user_password", user_password)
                 .withExpiresAt(expireTime.getTime())  // 设置过期的日期
                 .withIssuedAt(iatDate)        // 签发时间
                 .sign(Algorithm.HMAC256(SECRET));
