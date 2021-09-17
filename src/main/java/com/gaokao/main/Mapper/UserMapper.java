@@ -14,7 +14,7 @@ public interface UserMapper {
     //根据账号查询兴趣数组
     String[] getUserINTByUserAccount(String user_account);
 
-    //修改后
+    //更新用户信息
     int updateEditedUserInfo(User user);
 
     //插入一条用户信息

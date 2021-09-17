@@ -15,20 +15,20 @@ public class User {
     private String user_grade;
     private String user_address;
     private String user_sex;
-    private String user_rank;
+    private String user_degree;
     @Transient
     private String[] user_interest;
 
     public User() {
     }
 
-    public User(String user_account, String user_password, String user_grade, String user_address, String user_sex, String user_rank, String[] user_interest) {
+    public User(String user_account, String user_password, String user_grade, String user_address, String user_sex, String user_degree, String[] user_interest) {
         this.user_account = user_account;
         this.user_password = user_password;
         this.user_grade = user_grade;
         this.user_address = user_address;
         this.user_sex = user_sex;
-        this.user_rank = user_rank;
+        this.user_degree = user_degree;
         this.user_interest = user_interest;
     }
 
@@ -73,12 +73,12 @@ public class User {
         this.user_sex = user_sex;
     }
 
-    public String getUser_rank() {
-        return user_rank;
+    public String getuser_degree() {
+        return user_degree;
     }
 
-    public void setUser_rank(String user_rank) {
-        this.user_rank = user_rank;
+    public void setuser_degree(String user_degree) {
+        this.user_degree = user_degree;
     }
 
     @Transient
@@ -99,7 +99,7 @@ public class User {
                 ", user_grade='" + user_grade + '\'' +
                 ", user_address='" + user_address + '\'' +
                 ", user_sex='" + user_sex + '\'' +
-                ", user_rank='" + user_rank + '\'' +
+                ", user_degree='" + user_degree + '\'' +
                 ", user_interest=" + Arrays.toString(user_interest) +
                 '}';
     }

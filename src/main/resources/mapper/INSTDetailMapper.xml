@@ -31,4 +31,12 @@
         select * from scholarship_set where institution_name = <include refid="nesting"/>
     </select>
 
+    <select id="getChargingItemById" parameterType="int" resultType="com.gaokao.main.POJO.ChargingItem">
+        select * from charging_item where institution_name = <include refid="nesting"/>
+    </select>
+
+    <select id="getEnrollREGById" parameterType="int" resultType="com.gaokao.main.POJO.EnrollRegulation">
+        select * from institution_enroll_regulation where institution_name = <include refid="nesting"/>
+    </select>
+
 </mapper>

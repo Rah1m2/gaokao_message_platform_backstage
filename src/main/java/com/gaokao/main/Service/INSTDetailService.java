@@ -22,4 +22,7 @@ public interface INSTDetailService {
 
     //返回学校的收费项目信息
     ResponseData getChargingItem(int institution_id);
+
+    //返回学校的招生简章信息
+    ResponseData getEnrollREG(int institution_id);
 }

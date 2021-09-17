@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties"/>
+
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--<transactionManager type="JDBC"/>-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="${driver}"/>  &lt;!&ndash; serverTimezone=UTC &ndash;&gt;-->
+                <!--<property name="url" value="${url}"/>-->
+                <!--<property name="username" value="${jdbc_username}"/>-->
+                <!--<property name="pass2" value="${pass2}"/>-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+    
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <plugins>
+        <plugin interceptor="${PageHelper}">
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
+    
+    <mappers>
+        <!--<mapper resource="com/gaokao/main/Mapper/UserMapper.xml"/>-->
+        <mapper class="com.gaokao.main.Mapper.UserMapper"/>
+    </mappers>
+
+</configuration>

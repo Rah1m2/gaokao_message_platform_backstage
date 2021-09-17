@@ -17,4 +17,5 @@ public interface UserService {
 
     //根据token返回用户信息
     ResponseData getUserInfoByToken(String token);
+
 }

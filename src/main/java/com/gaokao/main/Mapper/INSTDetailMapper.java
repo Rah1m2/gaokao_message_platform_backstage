@@ -20,4 +20,10 @@ public interface INSTDetailMapper {
 
     //通过id获取学校的奖学金设置
     List<Scholarship> getScholarshipSet(int institution_id);
+
+    //通过id获取学校的收费项目信息
+    List<ChargingItem> getChargingItemById(int institution_id);
+
+    //通过id获取学校的招生简章信息
+    List<EnrollRegulation> getEnrollREGById(int institution_id);
 }

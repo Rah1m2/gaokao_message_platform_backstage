@@ -40,7 +40,11 @@ public class INSTDetailServiceImpl implements INSTDetailService {
     }
 
     public ResponseData getChargingItem(int institution_id) {
-        return null;
+        return ResponseData.ok().setData("CRGItem", instDetailMapper.getChargingItemById(institution_id));
+    }
+
+    public ResponseData getEnrollREG(int institution_id) {
+        return ResponseData.ok().setData("EnrollREGInfo", instDetailMapper.getEnrollREGById(institution_id));
     }
 
 }

@@ -58,4 +58,10 @@ public class INSTDetailController {
         return instDetailService.getChargingItem(Integer.parseInt(institution_id));
     }
 
+    //发送详情页面的招生简章信息
+    @RequestMapping(value = "/reqEnrollREGInfo/{id}")
+    public ResponseData sendEnrollREGInfo(@PathVariable("id") String institution_id) {
+        return instDetailService.getEnrollREG(Integer.parseInt(institution_id));
+    }
+
 }
