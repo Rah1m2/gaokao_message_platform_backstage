@@ -36,7 +36,7 @@ public class INSTDetailServiceImpl implements INSTDetailService {
     }
 
     public ResponseData getINSTSCHLRSet(int institution_id) {
-        return ResponseData.ok().setData("SCHLRSet", instDetailMapper.getScholarshipSet(institution_id));
+            return ResponseData.ok().setData("SCHLRSet", instDetailMapper.getScholarshipSet(institution_id));
     }
 
     public ResponseData getChargingItem(int institution_id) {

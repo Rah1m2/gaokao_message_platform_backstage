@@ -26,7 +26,7 @@ public class INSTServiceImpl implements INSTService {
     }
 
     public ResponseData getDefaultINSTInfo() {
-        List<Institution> INSTInfoList = instMapper.getDefualtINSTInfo();
+        List<Institution> INSTInfoList = instMapper.getDefaultINSTInfo();
         return ResponseData.ok().setData("INSTInfoList", INSTInfoList);
     }
 

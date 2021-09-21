@@ -2,5 +2,30 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
+<mapper namespace="com.gaokao.main.Mapper.MajorMapper">
+
+    <select id="getCATClassGroupByCAT" resultType="java.util.Map">
+        select major_category_id,major_category,major_class from major_category NATURAL JOIN major_class
+    </select>
+
+    <select id="getCategoryInfo" resultType="java.util.Map">
+        select distinct major_category_id,major_category from major_category NATURAL JOIN major_class
+    </select>
+
+    <select id="getMajorDetailInfo" parameterType="java.util.Map" resultType="com.gaokao.main.POJO.Major">
+        select * from major_info
+        <where>
+            <choose>
+                <when test="major_rank != null and major_class != null">
+                    major_degree=#{major_rank} and major_class=#{major_class}
+                </when>
+                <otherwise>
+                    <if test="major_id != null">
+                        major_id=#{major_id}
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
 </mapper>
