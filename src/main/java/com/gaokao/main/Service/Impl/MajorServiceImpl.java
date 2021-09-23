@@ -21,10 +21,10 @@ public class MajorServiceImpl implements MajorService {
         this.majorMapper = majorMapper;
     }
 
-    public ResponseData getCATClassInfo() {
+    public ResponseData getCATClassInfo(String major_rank) {
 
-        List<Map<String, Object>> categoryList =  majorMapper.getCategoryInfo();
-        List<Map<String, String>> detailList = majorMapper.getCATClassGroupByCAT();
+        List<Map<String, Object>> categoryList =  majorMapper.getCategoryInfo(major_rank);
+        List<Map<String, String>> detailList = majorMapper.getCATClassGroupByCAT(major_rank);
 
         for (Map<String, Object> CATMap : categoryList) {
             //为每条大类信息（category）添加一个数组元素，用来装分类信息（class）
@@ -46,6 +46,10 @@ public class MajorServiceImpl implements MajorService {
 
     public ResponseData getMajorDetailInfo(Map<String, Object> queryForm) {
         return ResponseData.ok().setData("MajorDetailInfo", majorMapper.getMajorDetailInfo(queryForm));
+    }
+
+    public ResponseData getRelativeMajorInfo(String major_class) {
+        return ResponseData.ok().setData("RelativeMajorInfo", majorMapper.getMajorInfoByClass(major_class));
     }
 
 }
