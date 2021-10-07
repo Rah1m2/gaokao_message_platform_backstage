@@ -1,7 +1,7 @@
 package com.gaokao.main.POJO;
 
 /**
- * 对应数据库中的institution_iintro表
+ * 对应数据库中的institution_intro表
  */
 public class Introduction {
     private String institution_name;

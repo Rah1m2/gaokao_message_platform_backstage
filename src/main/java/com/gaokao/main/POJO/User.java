@@ -86,7 +86,7 @@ public class User {
         return user_interest;
     }
 
-    @Transient
+//    @Transient
     public void setUser_interest(String[] user_interest) {
         this.user_interest = user_interest;
     }

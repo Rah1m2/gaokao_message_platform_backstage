@@ -1,6 +1,7 @@
 package com.gaokao.main.Mapper;
 
 import com.gaokao.main.POJO.Major;
+import com.gaokao.main.POJO.Salary;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,7 @@ public interface MajorMapper {
 
     //根据专业类获取专业详情信息
     List<Major> getMajorInfoByClass(String major_category);
+
+    //根据major_id获取指定专业的省份薪资排行
+    List<Salary> getProvinceSalaryById(int major_id);
 }

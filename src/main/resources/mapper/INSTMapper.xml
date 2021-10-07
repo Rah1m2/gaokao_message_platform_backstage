@@ -9,14 +9,22 @@
     </select>
 
     <select id="getINSTInfoByLabel" parameterType="com.gaokao.main.VO.QueryForm" resultType="com.gaokao.main.POJO.Institution">
-        select * from institution_info
-        <where>
-          <if test="institution_name != ''.toString()">institution_name=#{institution_name}</if>
-          <if test="institution_location != '全部'.toString()">and institution_location=#{institution_location}</if>
-          <if test="institution_type != '全部'.toString()">and institution_type=#{institution_type}</if>
-          <if test="institution_feature != ''.toString()">and institution_feature=#{institution_feature}</if>
-        </where>
-
+          <choose>
+              <when test="!major_id">
+                  select * from institution_info
+                  <where>
+                      <if test="institution_name != ''.toString()">institution_name=#{institution_name}</if>
+                      <if test="institution_location != '全部'.toString()">and institution_location=#{institution_location}</if>
+                      <if test="institution_type != '全部'.toString()">and institution_type=#{institution_type}</if>
+                      <if test="institution_feature != ''.toString()">and institution_feature=#{institution_feature}</if>
+                  </where>
+              </when>
+              <otherwise>
+                  select institution_id,institution_name,institution_location,institution_type,institution_degree,institution_feature from institution_info NATURAL JOIN institution_offer_major where offer_major=(
+                      select major_name from major_info where major_id=#{major_id}
+                      ) <if test="institution_location != '全部'.toString()">and institution_location = #{institution_location}</if>
+              </otherwise>
+          </choose>
     </select>
 
 </mapper>

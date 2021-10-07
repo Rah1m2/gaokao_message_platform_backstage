@@ -5,8 +5,10 @@ import java.util.*;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.gaokao.main.VO.ResponseData;
 
 public class JWT_Util {
 
@@ -56,8 +58,12 @@ public class JWT_Util {
 
         DecodedJWT jwt = null;
 
-        jwt = verifier.verify(token);  // 核实token
-
+        try {
+            jwt = verifier.verify(token);  // 核实token
+        } catch (TokenExpiredException te) {
+            System.out.println("token expired.");
+            throw new TokenExpiredException("token expired.");
+       }
         return jwt.getClaims();  // 这里解密jwt得到的是一个map
     }
 

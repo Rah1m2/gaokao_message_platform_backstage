@@ -1144,340 +1144,465 @@
       <Collation>utf8_general_ci</Collation>
     </table>
     <table id="292" parent="3" name="institution_intro"/>
-    <table id="293" parent="3" name="major_category"/>
-    <table id="294" parent="3" name="major_class"/>
-    <table id="295" parent="3" name="major_info">
+    <table id="293" parent="3" name="institution_offer_major"/>
+    <table id="294" parent="3" name="major_category"/>
+    <table id="295" parent="3" name="major_class"/>
+    <table id="296" parent="3" name="major_class_agency"/>
+    <table id="297" parent="3" name="major_info">
       <Collation>utf8_general_ci</Collation>
     </table>
-    <table id="296" parent="3" name="scholarship_set"/>
-    <table id="297" parent="3" name="user_info">
-      <Collation>utf8_general_ci</Collation>
-    </table>
-    <table id="298" parent="3" name="user_major_agency"/>
-    <column id="299" parent="287" name="institution_name">
+    <table id="298" parent="3" name="province_salary_level"/>
+    <table id="299" parent="3" name="scholarship_set"/>
+    <table id="300" parent="3" name="user_info"/>
+    <table id="301" parent="3" name="user_major_agency"/>
+    <column id="302" parent="287" name="institution_name">
       <Position>1</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="287" name="charging_item">
+    <column id="303" parent="287" name="charging_item">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="301" parent="287" name="PRIMARY">
+    <key id="304" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>institution_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="302" parent="288" name="institution_name">
+    <column id="305" parent="288" name="institution_name">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="288" name="dormitory">
+    <column id="306" parent="288" name="dormitory">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="288" name="canteen">
+    <column id="307" parent="288" name="canteen">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="288" name="food_standard">
+    <column id="308" parent="288" name="food_standard">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="306" parent="288" name="PRIMARY">
+    <key id="309" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>institution_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="307" parent="289" name="institution_name">
+    <column id="310" parent="289" name="institution_name">
       <Position>1</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="289" name="enroll_sequence">
+    <column id="311" parent="289" name="enroll_sequence">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="289" name="art_sort_enroll">
+    <column id="312" parent="289" name="art_sort_enroll">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="289" name="bonus_policy">
+    <column id="313" parent="289" name="bonus_policy">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="289" name="minority_policy">
+    <column id="314" parent="289" name="minority_policy">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="289" name="former_stu_policy">
+    <column id="315" parent="289" name="former_stu_policy">
       <Position>6</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="289" name="transfer_major_policy">
+    <column id="316" parent="289" name="transfer_major_policy">
       <Position>7</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="289" name="other_info">
+    <column id="317" parent="289" name="other_info">
       <Position>8</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="315" parent="289" name="PRIMARY">
+    <key id="318" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>institution_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="316" parent="290" name="institution_name">
+    <column id="319" parent="290" name="institution_name">
       <Position>1</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="290" name="enroll_regulation_content">
+    <column id="320" parent="290" name="enroll_regulation_content">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="318" parent="290" name="PRIMARY">
+    <key id="321" parent="290" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>institution_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="319" parent="291" name="institution_id">
+    <column id="322" parent="291" name="institution_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="291" name="institution_name">
+    <column id="323" parent="291" name="institution_name">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="291" name="institution_location">
+    <column id="324" parent="291" name="institution_location">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="322" parent="291" name="institution_type">
+    <column id="325" parent="291" name="institution_type">
       <Position>4</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="291" name="institution_degree">
+    <column id="326" parent="291" name="institution_degree">
       <Position>5</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="291" name="institution_feature">
+    <column id="327" parent="291" name="institution_feature">
       <Position>6</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="325" parent="291" name="institution_url">
+    <column id="328" parent="291" name="institution_url">
       <Position>7</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="326" parent="291" name="contact_number">
+    <column id="329" parent="291" name="contact_number">
       <Position>8</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="327" parent="291" name="PRIMARY">
+    <key id="330" parent="291" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>institution_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="328" parent="292" name="institution_name">
+    <column id="331" parent="292" name="institution_name">
       <Position>1</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="292" name="institution_introduction">
+    <column id="332" parent="292" name="institution_introduction">
       <Position>2</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="330" parent="292" name="PRIMARY">
+    <key id="333" parent="292" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>institution_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="331" parent="293" name="major_category_id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="332" parent="293" name="major_category">
-      <Position>2</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="333" parent="293" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>major_category_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="334" parent="294" name="major_class_id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="335" parent="294" name="major_class">
-      <Position>2</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="336" parent="294" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>major_class_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="337" parent="295" name="major_id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="338" parent="295" name="major_name">
-      <Position>2</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="339" parent="295" name="major_degree">
-      <Position>3</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="340" parent="295" name="major_code">
-      <Position>4</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="341" parent="295" name="major_class">
-      <Position>5</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="342" parent="295" name="major_category">
-      <Position>6</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="343" parent="295" name="major_introduction">
-      <Position>7</Position>
-      <DataType>text|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="344" parent="295" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>major_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="345" parent="296" name="institution_name">
-      <Position>1</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="346" parent="296" name="scholarship">
-      <Position>2</Position>
-      <DataType>text|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="347" parent="296" name="poverty_support">
-      <Position>3</Position>
-      <DataType>text|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="348" parent="296" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>institution_name</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="349" parent="297" name="user_account">
-      <Position>1</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="350" parent="297" name="user_password">
-      <Position>2</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="351" parent="297" name="user_grade">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="352" parent="297" name="user_address">
-      <Position>4</Position>
-      <DataType>text|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="353" parent="297" name="user_sex">
-      <Position>5</Position>
-      <DataType>varchar(8)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="354" parent="297" name="user_degree">
-      <Position>6</Position>
-      <DataType>varchar(8)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="355" parent="297" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>user_account</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="356" parent="298" name="user_major_id">
+    <column id="334" parent="293" name="institution_offer_major_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="298" name="user_account">
+    <column id="335" parent="293" name="institution_name">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="298" name="major_sort">
+    <column id="336" parent="293" name="major_category">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="359" parent="298" name="sort_preference">
+    <column id="337" parent="293" name="major_degree">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="338" parent="293" name="offer_major">
+      <Position>5</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="339" parent="293" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>institution_offer_major_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="340" parent="294" name="major_category_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="341" parent="294" name="major_category">
+      <Position>2</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="342" parent="294" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>major_category_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="343" parent="295" name="major_class_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="344" parent="295" name="major_category_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="345" parent="295" name="major_class">
+      <Position>3</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="346" parent="295" name="major_category_fk">
+      <ColNames>major_category_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="347" parent="295" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>major_class_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="348" parent="295" name="major_category_fk">
+      <ColNames>major_category_id</ColNames>
+      <RefSchemaName>db_school_query</RefSchemaName>
+      <RefTableName>major_category</RefTableName>
+      <RefColNames>major_category_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="349" parent="296" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="350" parent="296" name="major_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="351" parent="296" name="major_class_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="352" parent="296" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="353" parent="297" name="major_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="354" parent="297" name="major_name">
+      <Position>2</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="355" parent="297" name="major_code">
+      <Position>3</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="356" parent="297" name="major_degree">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="357" parent="297" name="major_class">
+      <Position>5</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="358" parent="297" name="major_category">
+      <Position>6</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="359" parent="297" name="major_introduction">
+      <Position>7</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="360" parent="297" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>major_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="361" parent="298" name="province_salary_level_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="362" parent="298" name="major_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="363" parent="298" name="major_degree">
+      <Position>3</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="364" parent="298" name="province">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="365" parent="298" name="salary_level">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="366" parent="298" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>province_salary_level_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="367" parent="299" name="institution_name">
+      <Position>1</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="368" parent="299" name="scholarship">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="369" parent="299" name="poverty_support">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="370" parent="299" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>institution_name</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="371" parent="300" name="user_account">
+      <Position>1</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="372" parent="300" name="user_password">
+      <Position>2</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
+    </column>
+    <column id="373" parent="300" name="user_grade">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="374" parent="300" name="user_address">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
+    </column>
+    <column id="375" parent="300" name="user_sex">
+      <Position>5</Position>
+      <DataType>varchar(8)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
+    </column>
+    <column id="376" parent="300" name="user_degree">
+      <Position>6</Position>
+      <DataType>varchar(8)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
+    </column>
+    <key id="377" parent="300" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_account</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="378" parent="301" name="user_major_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="379" parent="301" name="user_account">
+      <Position>2</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="380" parent="301" name="major_sort">
+      <Position>3</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="381" parent="301" name="sort_preference">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="360" parent="298" name="PRIMARY">
+    <index id="382" parent="301" name="user_account_fk">
+      <ColNames>user_account</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="383" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_major_id</ColNames>
       <Primary>1</Primary>
     </key>
+    <foreign-key id="384" parent="301" name="user_account_fk">
+      <ColNames>user_account</ColNames>
+      <RefSchemaName>db_school_query</RefSchemaName>
+      <RefTableName>user_info</RefTableName>
+      <RefColNames>user_account</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
   </database-model>
 </dataSource>

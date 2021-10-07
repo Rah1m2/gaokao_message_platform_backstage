@@ -5,6 +5,7 @@ import com.gaokao.main.VO.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Map;
 
 @RestController
@@ -31,6 +32,11 @@ public class MajorController {
     @RequestMapping(value = "/reqRelativeMajorInfo/{major_class}")
     private ResponseData sendRelativeMajorInfo(@PathVariable("major_class") String major_class) {
         return majorService.getRelativeMajorInfo(major_class);
+    }
+
+    @RequestMapping(value = "/reqProvinceSalary/{id}")
+    public ResponseData sendProvinceSalaryById(@PathVariable("id") String major_id) {
+        return majorService.getProvinceSalaryInfo(Integer.parseInt(major_id));
     }
 
 }

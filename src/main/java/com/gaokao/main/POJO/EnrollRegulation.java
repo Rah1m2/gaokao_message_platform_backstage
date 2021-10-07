@@ -1,5 +1,8 @@
 package com.gaokao.main.POJO;
 
+/**
+ * institution_enroll_regulation
+ */
 public class EnrollRegulation {
     private String institution_name;
     private String enroll_regulation_content;

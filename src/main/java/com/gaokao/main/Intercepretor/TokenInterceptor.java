@@ -1,6 +1,7 @@
 package com.gaokao.main.Intercepretor;
 
 import com.alibaba.fastjson.JSON;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.gaokao.main.Util.JWT_Util;
 import com.gaokao.main.VO.ResponseData;
@@ -37,7 +38,15 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        Map<String, Claim> verifiedToken = JWT_Util.verifyToken(token);
+        Map<String, Claim> verifiedToken = null;
+
+        try {
+            verifiedToken = JWT_Util.verifyToken(token);
+        } catch (TokenExpiredException te) {
+            System.out.println(te.getMessage());
+            //暂时让过期token通过
+            return true;
+        }
 
         System.out.println("test：计算token后，进入执行链前。");
 

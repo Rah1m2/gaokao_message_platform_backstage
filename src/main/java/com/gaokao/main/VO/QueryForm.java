@@ -1,6 +1,7 @@
 package com.gaokao.main.VO;
 
 public class QueryForm {
+    private int major_id;
     private String institution_name;
     private String institution_location;
     private String institution_type;
@@ -11,13 +12,22 @@ public class QueryForm {
     public QueryForm() {
     }
 
-    public QueryForm(String institution_name, String institution_location, String institution_type, String institution_feature, int pageNum, int pageSize) {
+    public QueryForm(int major_id, String institution_name, String institution_location, String institution_type, String institution_feature, int pageNum, int pageSize) {
+        this.major_id = major_id;
         this.institution_name = institution_name;
         this.institution_location = institution_location;
         this.institution_type = institution_type;
         this.institution_feature = institution_feature;
         PageNum = pageNum;
         PageSize = pageSize;
+    }
+
+    public int getMajor_id() {
+        return major_id;
+    }
+
+    public void setMajor_id(int major_id) {
+        this.major_id = major_id;
     }
 
     public String getInstitution_name() {
@@ -71,7 +81,8 @@ public class QueryForm {
     @Override
     public String toString() {
         return "QueryForm{" +
-                "institution_name='" + institution_name + '\'' +
+                "major_id=" + major_id +
+                ", institution_name='" + institution_name + '\'' +
                 ", institution_location='" + institution_location + '\'' +
                 ", institution_type='" + institution_type + '\'' +
                 ", institution_feature='" + institution_feature + '\'' +

@@ -32,4 +32,10 @@
         select major_id,major_name from major_info where major_class=#{major_class}
     </select>
 
+    <select id="getProvinceSalaryById" resultType="com.gaokao.main.POJO.Salary">
+        select province_salary_level_id,major_name,province name,salary_level value from province_salary_level where major_name=(
+        select major_name from major_info where major_id=#{major_id}
+        )
+    </select>
+
 </mapper>

@@ -52,4 +52,8 @@ public class MajorServiceImpl implements MajorService {
         return ResponseData.ok().setData("RelativeMajorInfo", majorMapper.getMajorInfoByClass(major_class));
     }
 
+    public ResponseData getProvinceSalaryInfo(int major_id) {
+            return ResponseData.ok().setData("ProvinceSalaryInfo", majorMapper.getProvinceSalaryById(major_id));
+    }
+
 }
