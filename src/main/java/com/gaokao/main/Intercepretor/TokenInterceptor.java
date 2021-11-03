@@ -34,7 +34,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 //            out.write(JSON.toJSONString(responseData));
 //            return false;
 //        }
-        if (token == null || token.equals("default")) {
+        if ( token == null || token.equals("undefined") || token.equals("default")) {
             return true;
         }
 

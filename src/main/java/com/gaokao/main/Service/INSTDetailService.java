@@ -1,6 +1,7 @@
 package com.gaokao.main.Service;
 
 import com.gaokao.main.VO.ResponseData;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 public interface INSTDetailService {
@@ -25,4 +26,8 @@ public interface INSTDetailService {
 
     //返回学校的招生简章信息
     ResponseData getEnrollREG(int institution_id);
+
+    //返回学校的开设专业信息
+    ResponseData getOfferMajorInfo(String institution_id, String major_degree);
+
 }

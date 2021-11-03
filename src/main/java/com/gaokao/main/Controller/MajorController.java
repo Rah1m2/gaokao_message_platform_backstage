@@ -39,4 +39,9 @@ public class MajorController {
         return majorService.getProvinceSalaryInfo(Integer.parseInt(major_id));
     }
 
+    @RequestMapping(value = "/reqMajorId/{id}/{major_name}")
+    public ResponseData sendMajorIdByOfferMajorId(@PathVariable("id") String offer_major_id, @PathVariable("major_name") String major_name) {
+        return majorService.getMajorIdByOfferMajorId(Integer.parseInt(offer_major_id), major_name);
+    }
+
 }

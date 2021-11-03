@@ -64,4 +64,11 @@ public class INSTDetailController {
         return instDetailService.getEnrollREG(Integer.parseInt(institution_id));
     }
 
+    //发送开设专业信息
+    @RequestMapping(value = "/reqOfferMajorInfo/{id}/{major_degree}")
+    public ResponseData sendOfferMajorInfo(@PathVariable("id") String institution_id, @PathVariable("major_degree") String major_degree) {
+        return instDetailService.getOfferMajorInfo(institution_id, major_degree);
+    }
+
+
 }

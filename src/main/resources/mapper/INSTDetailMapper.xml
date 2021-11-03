@@ -39,4 +39,15 @@
         select * from institution_enroll_regulation where institution_name = <include refid="nesting"/>
     </select>
 
+    <select id="getOfferMajorInfoById" parameterType="String" resultType="java.util.Map">
+        SELECT
+                institution_name, major_category,
+                GROUP_CONCAT(CONCAT_WS('-',offer_major_id, offer_major)) AS children
+        FROM
+                institution_offer_major
+        WHERE institution_name=(
+                SELECT institution_name FROM institution_info WHERE institution_id=#{institution_id}
+        ) AND major_degree=#{major_degree} GROUP BY major_category DESC
+    </select>
+
 </mapper>

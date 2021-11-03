@@ -38,4 +38,22 @@
         )
     </select>
 
+    <select id="getMajorIdByOfferMajorId" resultType="java.util.Map">
+        select
+            major_id
+        from
+            major_info
+        where
+            major_name=#{param2}
+        and
+            major_degree=(
+                select
+                    institution_offer_major.major_degree
+                from
+                    institution_offer_major
+                where
+                    offer_major_id=#{param1}
+            )
+    </select>
+
 </mapper>

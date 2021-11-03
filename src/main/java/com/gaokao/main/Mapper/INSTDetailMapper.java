@@ -1,8 +1,10 @@
 package com.gaokao.main.Mapper;
 
 import com.gaokao.main.POJO.*;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface INSTDetailMapper {
 
@@ -26,4 +28,7 @@ public interface INSTDetailMapper {
 
     //通过id获取学校的招生简章信息
     List<EnrollRegulation> getEnrollREGById(int institution_id);
+
+    //通过学校名字获取学校开设专业的信息
+    List<Map> getOfferMajorInfoById(@Param("institution_id") String institution_id, @Param("major_degree") String major_degree);
 }

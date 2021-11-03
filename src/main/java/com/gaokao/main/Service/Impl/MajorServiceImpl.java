@@ -56,4 +56,11 @@ public class MajorServiceImpl implements MajorService {
             return ResponseData.ok().setData("ProvinceSalaryInfo", majorMapper.getProvinceSalaryById(major_id));
     }
 
+    public ResponseData getMajorIdByOfferMajorId(int offer_major_id, String major_name) {
+        Map<String, Object> resultMap = majorMapper.getMajorIdByOfferMajorId(offer_major_id, major_name);
+        if (resultMap == null)
+            return ResponseData.badRequest();
+        return ResponseData.ok().setData("major_id", resultMap.get("major_id"));
+    }
+
 }

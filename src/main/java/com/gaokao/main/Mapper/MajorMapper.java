@@ -22,4 +22,7 @@ public interface MajorMapper {
 
     //根据major_id获取指定专业的省份薪资排行
     List<Salary> getProvinceSalaryById(int major_id);
+
+    //根据offer_major_id查询对应的major_id
+    Map<String, Object> getMajorIdByOfferMajorId(int offer_major_id, String major_name);
 }

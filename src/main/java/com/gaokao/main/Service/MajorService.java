@@ -18,4 +18,6 @@ public interface MajorService {
     //获取指定专业的省份薪资排行
     ResponseData getProvinceSalaryInfo(int major_id);
 
+    //通过offer_major_id获取对应major的major_id
+    ResponseData getMajorIdByOfferMajorId(int offer_major_id, String major_name);
 }
