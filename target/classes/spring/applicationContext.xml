@@ -12,4 +12,7 @@
     <!--spring-mvc的配置文件-->
     <import resource="classpath:/spring/springmvc-servlet.xml"/>
 
+    <!--spring-thread的配置文件-->
+    <import resource="classpath:/spring/spring-thread.xml"/>
+
 </beans>

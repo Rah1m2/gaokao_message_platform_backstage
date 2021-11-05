@@ -24,7 +24,9 @@
     <!--拦截器配置-->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
+            <mvc:mapping path="/user/**"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/register"/>
             <bean class="com.gaokao.main.Intercepretor.TokenInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

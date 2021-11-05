@@ -34,9 +34,6 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 //            out.write(JSON.toJSONString(responseData));
 //            return false;
 //        }
-        if ( token == null || token.equals("undefined") || token.equals("default")) {
-            return true;
-        }
 
         Map<String, Claim> verifiedToken = null;
 
@@ -44,8 +41,16 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             verifiedToken = JWT_Util.verifyToken(token);
         } catch (TokenExpiredException te) {
             System.out.println(te.getMessage());
-            //暂时让过期token通过
-            return true;
+            PrintWriter out = httpServletResponse.getWriter();
+            ResponseData responseData = ResponseData.tokenExpired();
+            out.write(JSON.toJSONString(responseData));
+            return false;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            PrintWriter out = httpServletResponse.getWriter();
+            ResponseData responseData = ResponseData.unknownError();
+            out.write(JSON.toJSONString(responseData));
+            return false;
         }
 
         System.out.println("test：计算token后，进入执行链前。");
@@ -63,5 +68,11 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
+    }
+
+    private void showUrl(HttpServletRequest request){
+        System.out.println("url: "+request.getScheme() +"://" + request.getServerName()
+                + ":" +request.getServerPort()
+                + request.getServletPath() + "?" + request.getQueryString());
     }
 }

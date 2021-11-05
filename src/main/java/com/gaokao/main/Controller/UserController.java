@@ -52,6 +52,11 @@ public class UserController {
         return userService.saveEditedUserInfo(user);
     }
 
+    @RequestMapping(value = "/checkToken")
+    public ResponseData checkToken() {
+        return ResponseData.ok();
+    }
+
     private String getHeader() {
         String test = request.getHeader("token");
         return test;

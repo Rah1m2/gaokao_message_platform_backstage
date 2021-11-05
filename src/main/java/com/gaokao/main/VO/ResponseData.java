@@ -56,7 +56,7 @@ public class ResponseData {
     }
 
     public static ResponseData unauthorized() {
-        return new ResponseData(401, "unauthorized");
+        return new ResponseData(401, "Unauthorized");
     }
 
     public static ResponseData serverInternalError() {
@@ -69,5 +69,9 @@ public class ResponseData {
 
     public static ResponseData tokenExpired() {
         return new ResponseData(840, "Token Expired");
+    }
+
+    public static ResponseData unknownError() {
+        return new ResponseData(666, "Unknown Error occurred when processing");
     }
 }
