@@ -4,11 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gaokao.main.Mapper.INSTMapper">
 
-    <select id="getDefualtINSTInfo" resultType="com.gaokao.main.POJO.Institution">
+    <select id="getDefaultINSTInfo" resultType="com.gaokao.main.DTO.Institution">
         select * from institution_info
     </select>
 
-    <select id="getINSTInfoByLabel" parameterType="com.gaokao.main.VO.QueryForm" resultType="com.gaokao.main.POJO.Institution">
+    <select id="getINSTInfoByInstId" resultType="com.gaokao.main.DTO.Institution">
+        select * from institution_info where institution_id=#{institution_id}
+    </select>
+
+    <select id="getINSTInfoByLabel" parameterType="com.gaokao.main.VO.QueryForm" resultType="com.gaokao.main.DTO.Institution">
           <choose>
               <when test="!major_id">
                   select * from institution_info

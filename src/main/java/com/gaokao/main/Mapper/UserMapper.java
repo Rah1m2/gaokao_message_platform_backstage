@@ -1,6 +1,6 @@
 package com.gaokao.main.Mapper;
 
-import com.gaokao.main.POJO.User;
+import com.gaokao.main.DTO.User;
 import java.util.List;
 
 public interface UserMapper {

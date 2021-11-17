@@ -1,12 +1,10 @@
 package com.gaokao.main.Controller;
 
-import com.gaokao.main.POJO.User;
+import com.gaokao.main.DTO.User;
 import com.gaokao.main.Service.UserService;
 import com.gaokao.main.VO.LoginForm;
 import com.gaokao.main.VO.ResponseData;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 

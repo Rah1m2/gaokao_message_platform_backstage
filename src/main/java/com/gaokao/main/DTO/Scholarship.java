@@ -1,4 +1,4 @@
-package com.gaokao.main.POJO;
+package com.gaokao.main.DTO;
 
 public class Scholarship {
     private String scholarship_name;

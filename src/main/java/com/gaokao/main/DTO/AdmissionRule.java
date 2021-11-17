@@ -1,4 +1,4 @@
-package com.gaokao.main.POJO;
+package com.gaokao.main.DTO;
 
 /**
  * 对应数据库中的institution_admission_rule表

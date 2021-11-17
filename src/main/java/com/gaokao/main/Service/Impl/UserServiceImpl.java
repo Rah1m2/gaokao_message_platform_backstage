@@ -3,7 +3,7 @@ package com.gaokao.main.Service.Impl;
 import com.auth0.jwt.interfaces.Claim;
 import com.gaokao.main.Mapper.AgencyMapper;
 import com.gaokao.main.Mapper.UserMapper;
-import com.gaokao.main.POJO.User;
+import com.gaokao.main.DTO.User;
 import com.gaokao.main.Service.UserService;
 import com.gaokao.main.Util.JWT_Util;
 import com.gaokao.main.VO.LoginForm;
@@ -11,7 +11,6 @@ import com.gaokao.main.VO.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.ejb.DuplicateKeyException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

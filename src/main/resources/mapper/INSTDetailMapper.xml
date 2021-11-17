@@ -11,31 +11,31 @@
         )
     </sql>
 
-    <select id="getHomePageById" parameterType="int" resultType="com.gaokao.main.POJO.Institution">
+    <select id="getHomePageById" parameterType="int" resultType="com.gaokao.main.DTO.Institution">
       select * from institution_info where institution_id = #{institution_id}
     </select>
 
-    <select id="getIntroductionById" parameterType="int" resultType="com.gaokao.main.POJO.Introduction">
+    <select id="getIntroductionById" parameterType="int" resultType="com.gaokao.main.DTO.Introduction">
       select * from institution_intro where institution_intro.institution_name = <include refid="nesting"/>
     </select>
 
-    <select id="getADMRulesById" parameterType="int" resultType="com.gaokao.main.POJO.AdmissionRule">
+    <select id="getADMRulesById" parameterType="int" resultType="com.gaokao.main.DTO.AdmissionRule">
         select * from institution_admission_rule where institution_name = <include refid="nesting"/>
     </select>
 
-    <select id="getACCOMDNById" parameterType="int" resultType="com.gaokao.main.POJO.Accommodation">
+    <select id="getACCOMDNById" parameterType="int" resultType="com.gaokao.main.DTO.Accommodation">
         select * from institution_accommodation where institution_name = <include refid="nesting"/>
     </select>
 
-    <select id="getScholarshipSet" parameterType="int" resultType="com.gaokao.main.POJO.Scholarship">
+    <select id="getScholarshipSet" parameterType="int" resultType="com.gaokao.main.DTO.Scholarship">
         select * from scholarship_set where institution_name = <include refid="nesting"/>
     </select>
 
-    <select id="getChargingItemById" parameterType="int" resultType="com.gaokao.main.POJO.ChargingItem">
+    <select id="getChargingItemById" parameterType="int" resultType="com.gaokao.main.DTO.ChargingItem">
         select * from charging_item where institution_name = <include refid="nesting"/>
     </select>
 
-    <select id="getEnrollREGById" parameterType="int" resultType="com.gaokao.main.POJO.EnrollRegulation">
+    <select id="getEnrollREGById" parameterType="int" resultType="com.gaokao.main.DTO.EnrollRegulation">
         select * from institution_enroll_regulation where institution_name = <include refid="nesting"/>
     </select>
 

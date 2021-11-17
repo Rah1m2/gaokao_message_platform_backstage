@@ -1,4 +1,4 @@
-package com.gaokao.main.POJO;
+package com.gaokao.main.DTO;
 
 public class MajorClass {
     private int major_class_id;

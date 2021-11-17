@@ -1,6 +1,6 @@
 package com.gaokao.main.Service;
 
-import com.gaokao.main.POJO.User;
+import com.gaokao.main.DTO.User;
 import com.gaokao.main.VO.LoginForm;
 import com.gaokao.main.VO.ResponseData;
 

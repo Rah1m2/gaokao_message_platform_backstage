@@ -1,6 +1,6 @@
 package com.gaokao.main.Mapper;
 
-import com.gaokao.main.POJO.*;
+import com.gaokao.main.DTO.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

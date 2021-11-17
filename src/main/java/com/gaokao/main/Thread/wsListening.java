@@ -1,6 +1,6 @@
 //package com.gaokao.main.Thread;
 //
-//import com.gaokao.main.POJO.User;
+//import com.gaokao.main.DTO.User;
 //import com.gaokao.main.WebSocket.HeartbeatEndPoint;
 //import org.springframework.beans.factory.InitializingBean;
 //import org.springframework.beans.factory.annotation.Autowired;

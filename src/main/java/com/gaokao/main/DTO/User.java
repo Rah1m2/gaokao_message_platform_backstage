@@ -1,7 +1,4 @@
-package com.gaokao.main.POJO;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.web.bind.annotation.RequestMapping;
+package com.gaokao.main.DTO;
 
 import javax.persistence.Transient;
 import java.util.Arrays;

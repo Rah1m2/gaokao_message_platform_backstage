@@ -1,7 +1,7 @@
 package com.gaokao.main.Mapper;
 
-import com.gaokao.main.POJO.Major;
-import com.gaokao.main.POJO.Salary;
+import com.gaokao.main.DTO.Major;
+import com.gaokao.main.DTO.Salary;
 
 import java.util.List;
 import java.util.Map;

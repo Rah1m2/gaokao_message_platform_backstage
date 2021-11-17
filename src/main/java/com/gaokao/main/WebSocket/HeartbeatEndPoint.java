@@ -1,8 +1,14 @@
 package com.gaokao.main.WebSocket;
 
 import com.auth0.jwt.interfaces.Claim;
+import com.gaokao.main.DTO.Institution;
+import com.gaokao.main.Mapper.AnalysisMapper;
+import com.gaokao.main.Mapper.INSTMapper;
+import com.gaokao.main.Service.INSTService;
 import com.gaokao.main.Util.JWT_Util;
 import com.gaokao.main.VO.UserAnaly;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -11,8 +17,19 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 @ServerEndpoint("/heartbeat/{token}/{sort}/{id}")
 public class HeartbeatEndPoint {
+
+    private INSTMapper instMapper;
+    private AnalysisMapper analysisMapper;
+
+    @Autowired
+    public HeartbeatEndPoint(INSTMapper instMapper, AnalysisMapper analysisMapper) {
+        this.instMapper = instMapper;
+        this.analysisMapper = analysisMapper;
+    }
+
     // 通过该对象可以发送消息给指定用户
     private Session session;
 
@@ -47,11 +64,12 @@ public class HeartbeatEndPoint {
         this.userAnaly.setUser_account(user_account);
 
         //由于传过来的id可能是major_id也可能是institution_id，所以需要进行判断
-        if (sort.equalsIgnoreCase("institution"))
+        if (sort.equalsIgnoreCase("institution")) {
             this.userAnaly.setInstitution_id(id);
-        else
+            pushData(this.userAnaly, id);
+        } else {
             this.userAnaly.setMajor_id(id);
-
+        }
 
         //如果有重复的键值则不放入Ws的Map
         for (Map.Entry<UserAnaly, HeartbeatEndPoint> entry : onlineUsers.entrySet()) {
@@ -115,6 +133,37 @@ public class HeartbeatEndPoint {
     public void onError(Session session, Throwable error) {
         System.out.println("发生错误");
         error.printStackTrace();
+    }
+
+    //填充用户模型数据
+    private void pushData(UserAnaly userAnaly, int id) {
+        //获取学校信息
+        Institution inst = instMapper.getINSTInfoByInstId(id);
+
+        //设置Institution_degree_num属性
+        if (inst.getInstitution_degree().equals("本科"))
+            userAnaly.setInstitution_degree_num(1);
+        else
+            userAnaly.setInstitution_degree_num(0);
+
+        //设置Institution_feature_num属性
+        if (inst.getInstitution_feature().equals("一流大学建设高校"))
+            userAnaly.setInstitution_feature_num(2);
+        else if (inst.getInstitution_feature().equals("一流学科建设高校"))
+            userAnaly.setInstitution_feature_num(1);
+        else
+            userAnaly.setInstitution_feature_num(0);
+
+        //设置institution_type_id属性
+        String institution_type = inst.getInstitution_type();
+        int institution_type_id = analysisMapper.getInstTypeIdByInstType(institution_type);
+        userAnaly.setInstitution_type_id(institution_type_id);
+
+        //设置province_id属性
+        String province = inst.getInstitution_location();
+        int province_id = analysisMapper.getProvinceIdByPR(province);
+        userAnaly.setProvince_id(province_id);
+
     }
 
 }

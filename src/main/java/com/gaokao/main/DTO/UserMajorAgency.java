@@ -1,4 +1,4 @@
-package com.gaokao.main.POJO;
+package com.gaokao.main.DTO;
 
 /**
  * 对应数据库中的UserMajorAgengcy_info表

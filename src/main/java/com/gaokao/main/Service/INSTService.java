@@ -1,5 +1,6 @@
 package com.gaokao.main.Service;
 
+import com.gaokao.main.DTO.Institution;
 import com.gaokao.main.VO.QueryForm;
 import com.gaokao.main.VO.ResponseData;
 
@@ -10,5 +11,6 @@ public interface INSTService {
 
     //根据描述标签获取院校信息
     ResponseData getINSTInfoByLabel(QueryForm queryForm);
+
 
 }
