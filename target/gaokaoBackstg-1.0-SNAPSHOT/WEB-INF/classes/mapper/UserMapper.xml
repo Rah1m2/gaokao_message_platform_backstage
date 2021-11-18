@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gaokao.main.Mapper.UserMapper">
 
-    <select id="getUserByUserAccount" parameterType="String" resultType="com.gaokao.main.POJO.User">
+    <select id="getUserByUserAccount" parameterType="String" resultType="com.gaokao.main.DTO.User">
       select * from user_info where user_account=#{user_account}
     </select>
 
@@ -12,12 +12,12 @@
         select major_sort from user_major_agency where user_account=#{user_account}
     </select>
 
-    <update id="updateEditedUserInfo" parameterType="com.gaokao.main.POJO.User">
+    <update id="updateEditedUserInfo" parameterType="com.gaokao.main.DTO.User">
         update user_info set <if test="user_password != ''.toString()">user_password=#{user_password},</if>  user_grade=#{user_grade}, user_address=#{user_address}, user_sex=#{user_sex}, user_degree=#{user_degree}
           where user_account=#{user_account}
     </update>
 
-    <insert id="insertSingleUser" parameterType="com.gaokao.main.POJO.User">
+    <insert id="insertSingleUser" parameterType="com.gaokao.main.DTO.User">
         insert into user_info (user_account, user_password, user_grade, user_address, user_sex, user_degree) values
             (#{user_account}, #{user_password}, #{user_grade}, #{user_address}, #{user_sex}, #{user_degree})
     </insert>

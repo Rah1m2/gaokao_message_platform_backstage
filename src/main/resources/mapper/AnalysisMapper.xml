@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AnalysisMapper">
+<mapper namespace="com.gaokao.main.Mapper.AnalysisMapper">
 
     <select id="getProvinceIdByPR" parameterType="java.lang.String" resultType="java.lang.Integer">
         select province_id from province_info where province=#{province}

@@ -14,6 +14,7 @@ public class SendMsg extends TimerTask {
         HeartbeatEndPoint heartbeatEndPoint;
         for (Map.Entry<UserAnaly, HeartbeatEndPoint> entry : HeartbeatEndPoint.onlineUsers.entrySet()) {
             heartbeatEndPoint = entry.getValue();
+            heartbeatEndPoint.onlineTime += 15;
             try {
                 heartbeatEndPoint.sendInfo();
             } catch (IOException e) {

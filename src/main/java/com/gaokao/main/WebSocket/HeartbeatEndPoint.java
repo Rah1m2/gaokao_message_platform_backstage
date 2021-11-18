@@ -6,29 +6,29 @@ import com.gaokao.main.Mapper.AnalysisMapper;
 import com.gaokao.main.Mapper.INSTMapper;
 import com.gaokao.main.Service.INSTService;
 import com.gaokao.main.Util.JWT_Util;
+import com.gaokao.main.Util.RedisTemplate_Util;
 import com.gaokao.main.VO.UserAnaly;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+@Component(value = "heartbeatEndPoint")
 @ServerEndpoint("/heartbeat/{token}/{sort}/{id}")
 public class HeartbeatEndPoint {
 
-    private INSTMapper instMapper;
-    private AnalysisMapper analysisMapper;
+    private static INSTMapper instMapper;
+    private static AnalysisMapper analysisMapper;
+    private static RedisTemplate redisTemplate;
 
-    @Autowired
-    public HeartbeatEndPoint(INSTMapper instMapper, AnalysisMapper analysisMapper) {
-        this.instMapper = instMapper;
-        this.analysisMapper = analysisMapper;
-    }
+    public long onlineTime;
 
     // 通过该对象可以发送消息给指定用户
     private Session session;
@@ -36,13 +36,21 @@ public class HeartbeatEndPoint {
     // 用户id
     private String userId;
 
-    private int onlineTime;
-
     // 用户实体
     private UserAnaly userAnaly;
 
     // 用于存储用户数据
     public static Map<UserAnaly, HeartbeatEndPoint> onlineUsers = new HashMap<UserAnaly, HeartbeatEndPoint>();
+
+    public HeartbeatEndPoint() {
+    }
+
+    @Autowired
+    public HeartbeatEndPoint(INSTMapper instMapper, AnalysisMapper analysisMapper, RedisTemplate redisTemplate) {
+        HeartbeatEndPoint.instMapper = instMapper;
+        HeartbeatEndPoint.analysisMapper = analysisMapper;
+        HeartbeatEndPoint.redisTemplate = redisTemplate;
+    }
 
     @OnOpen
     // 连接建立时被调用
@@ -66,7 +74,7 @@ public class HeartbeatEndPoint {
         //由于传过来的id可能是major_id也可能是institution_id，所以需要进行判断
         if (sort.equalsIgnoreCase("institution")) {
             this.userAnaly.setInstitution_id(id);
-            pushData(this.userAnaly, id);
+//            pushDataToRedis(this.userAnaly, id);
         } else {
             this.userAnaly.setMajor_id(id);
         }
@@ -124,6 +132,21 @@ public class HeartbeatEndPoint {
     @OnClose
     // 连接断开时被调用
     public void onClose(Session session) {
+
+        //
+        int v = 0;
+        if (this.onlineTime>=15 && this.onlineTime<30)
+            v+=1;
+        else if (this.onlineTime>=30 && this.onlineTime<60)
+            v+=2;
+        else if (this.onlineTime>=60)
+            v+=3;
+
+        String[] analysis_strs = (String[]) getDataFromRedis(this.userAnaly, this.userAnaly.getInstitution_id());
+        if (analysis_strs != null) {
+           v += Integer.parseInt(analysis_strs[analysis_strs.length-1]);
+        }
+        pushDataToRedis(this.userAnaly, this.userAnaly.getInstitution_id(),v);
         onlineUsers.remove(this.userAnaly);
         System.out.println("有一连接关闭,current map size is:");
         System.out.println(onlineUsers.size());
@@ -136,12 +159,14 @@ public class HeartbeatEndPoint {
     }
 
     //填充用户模型数据
-    private void pushData(UserAnaly userAnaly, int id) {
+    private void pushDataToRedis(UserAnaly userAnaly, int id, int v) {
         //获取学校信息
         Institution inst = instMapper.getINSTInfoByInstId(id);
 
         //设置Institution_degree_num属性
         if (inst.getInstitution_degree().equals("本科"))
+            userAnaly.setInstitution_degree_num(2);
+        else if (inst.getInstitution_degree().equals("本科/高职(专科)"))
             userAnaly.setInstitution_degree_num(1);
         else
             userAnaly.setInstitution_degree_num(0);
@@ -163,7 +188,26 @@ public class HeartbeatEndPoint {
         String province = inst.getInstitution_location();
         int province_id = analysisMapper.getProvinceIdByPR(province);
         userAnaly.setProvince_id(province_id);
+        String content = "" + userAnaly.getInstitution_degree_num() +
+                userAnaly.getInstitution_type_id() + "," +
+                userAnaly.getInstitution_feature_num() + "," +
+                userAnaly.getProvince_id() + "," +
+                v;
 
+        RedisTemplate_Util redisTemplate_util = new RedisTemplate_Util(redisTemplate);
+        redisTemplate_util.set("school_query_db:user_analysis:"+userAnaly.getUser_account()+":"+userAnaly.getInstitution_id(), content);
+
+    }
+
+    private Object getDataFromRedis(UserAnaly userAnaly, int id) {
+        RedisTemplate_Util redisTemplate_util = new RedisTemplate_Util(redisTemplate);
+        String redis_res = (String) redisTemplate_util.get("school_query_db:user_analysis:"+userAnaly.getUser_account()+":"+userAnaly.getInstitution_id());
+        String[] strs;
+        strs = redis_res.split(",");
+        redis_res = strs[strs.length-1];
+        System.out.println("User hot:"+redis_res);
+        System.out.println(Arrays.toString(strs));
+        return strs;
     }
 
 }
