@@ -30,7 +30,6 @@ public class HeartbeatEndPoint {
     private static INSTMapper instMapper;
     private static AnalysisMapper analysisMapper;
     private static RedisTemplate redisTemplate;
-    private SendMsg sendMsg;
 
     //用户在线时间
     public long onlineTime;
@@ -63,8 +62,10 @@ public class HeartbeatEndPoint {
     @OnOpen
     // 连接建立时被调用
     public void onOpen(@PathParam("token") String token, @PathParam("sort") String sort, @PathParam("id") int id, Session session) throws IOException {
+
         this.session = session;
 
+        //用于存储解码后的token
         Map<String, Claim> verifiedToken;
 
         //解码
@@ -77,12 +78,12 @@ public class HeartbeatEndPoint {
         //将user_account，major_id或者institution_id封装进对象
         this.userAnaly  = new UserAnaly();
 
+        //设置user_account
         this.userAnaly.setUser_account(user_account);
 
         //由于传过来的id可能是major_id也可能是institution_id，所以需要进行判断
         if (sort.equalsIgnoreCase("institution")) {
             this.userAnaly.setInstitution_id(id);
-//            pushDataToRedis(this.userAnaly, id);
         } else {
             this.userAnaly.setMajor_id(id);
         }
@@ -99,8 +100,9 @@ public class HeartbeatEndPoint {
         // 保存对应的连接服务
         onlineUsers.put(this.userAnaly, this);
         System.out.println("map size:"+onlineUsers.size());
+
+        //启动自动握手线程，启动前等待15s
         PushMsgToFront();
-//        sendInfo();
     }
 
     @OnMessage
@@ -108,11 +110,6 @@ public class HeartbeatEndPoint {
     public void OnMessage(String message, Session session) throws IOException {
         System.out.println(message);
         this.onlineTime += 15;
-        // 获取到
-//        com.alibaba.fastjson.JSONObject chat = JSON.parseObject(message);
-//        com.alibaba.fastjson.JSONObject message = JSON.parseObject(chat.get("message").toString());
-
-//        sendInfo();
     }
 
     /**
@@ -130,14 +127,6 @@ public class HeartbeatEndPoint {
      * @throws IOException
      */
     public void sendInfo() throws IOException {
-
-//        for(HeartbeatEndPoint item : onlineUsers) {
-//            try {
-//                item.sendMessage(message);
-//            } catch (IOException e) {
-//                continue;
-//            }
-//        }
         sendMessage("ping");
     }
 
@@ -145,6 +134,7 @@ public class HeartbeatEndPoint {
     // 连接断开时被调用
     public void onClose(Session session) {
 
+        //停止向量
         timer.cancel();
 
         //v为用户的兴趣向量
@@ -178,7 +168,9 @@ public class HeartbeatEndPoint {
         error.printStackTrace();
     }
 
-    //填充用户模型数据
+    /*
+     填充用户模型数据,并将数据存储到Redis
+     */
     private void pushDataToRedis(UserAnaly userAnaly, int id, int v) {
         //获取学校信息
         Institution inst = instMapper.getINSTInfoByInstId(id);
@@ -208,6 +200,8 @@ public class HeartbeatEndPoint {
         String province = inst.getInstitution_location();
         int province_id = analysisMapper.getProvinceIdByPR(province);
         userAnaly.setProvince_id(province_id);
+
+        //拼接存入redis的特征向量值，形如：1,2,1,2,5
         String content = "" + userAnaly.getInstitution_degree_vector() + "," +
                 userAnaly.getInstitution_type_id() + "," +
                 userAnaly.getInstitution_feature_vector() + "," +
@@ -219,19 +213,34 @@ public class HeartbeatEndPoint {
 
     }
 
+    /*
+     从Redis获取数据
+     */
     private Object getDataFromRedis(UserAnaly userAnaly, int id) {
         RedisTemplate_Util redisTemplate_util = new RedisTemplate_Util(redisTemplate);
         String redis_res = (String) redisTemplate_util.get("school_query_db:user_vector:"+userAnaly.getUser_account()+":"+userAnaly.getInstitution_id());
+
+        //如果redis中查不到当前用户数据就返回
         if (redis_res == null)
             return null;
-        String[] strs;
-        strs = redis_res.split(",");
-        redis_res = strs[strs.length-1];
+
+        //分割后的特征向量分量数组
+        String[] components;
+
+        //将特征向量每个分量按照逗号分割
+        components = redis_res.split(",");
+
+        //取最末尾一个为用户的兴趣度
+        redis_res = components[components.length-1];
+
         System.out.println("User hot:"+redis_res);
-        System.out.println(Arrays.toString(strs));
-        return strs;
+        System.out.println(Arrays.toString(components));
+        return components;
     }
 
+    /*
+     开启定时任务，进行心跳包发送
+     */
     private void PushMsgToFront() {
         timer = new Timer(true);
         timer.schedule(new PushMsg(this),15*1000,15*1000);
