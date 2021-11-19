@@ -1,5 +1,6 @@
 package com.gaokao.main.Mapper;
 
+import com.gaokao.main.DTO.InstType;
 import com.gaokao.main.DTO.Institution;
 import com.gaokao.main.VO.QueryForm;
 import com.gaokao.main.VO.ResponseData;
@@ -16,5 +17,8 @@ public interface INSTMapper {
 
     //获取标签对应的学校信息
     List<Institution> getINSTInfoByLabel(QueryForm queryForm);
+
+    //获取院校类型信息
+    List<InstType> getINSTTypeInfo();
 
 }

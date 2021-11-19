@@ -31,4 +31,8 @@
           </choose>
     </select>
 
+    <select id="getINSTTypeInfo" resultType="com.gaokao.main.DTO.InstType">
+        select * from institution_type_info
+    </select>
+
 </mapper>

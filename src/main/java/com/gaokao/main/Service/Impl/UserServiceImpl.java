@@ -115,4 +115,6 @@ public class UserServiceImpl implements UserService {
         agencyMapper.insertSingleMsg_User_Major(agencyList);
     }
 
+
+
 }

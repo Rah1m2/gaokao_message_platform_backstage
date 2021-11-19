@@ -56,8 +56,7 @@ public class UserController {
     }
 
     private String getHeader() {
-        String test = request.getHeader("token");
-        return test;
+        return request.getHeader("token");
     }
 
 }

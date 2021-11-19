@@ -1,5 +1,6 @@
 package com.gaokao.main.DTO;
 
+
 public class Salary {
     private int province_salary_level_id;
     private String major_name;
