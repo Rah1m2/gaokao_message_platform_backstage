@@ -2,11 +2,14 @@ package com.gaokao.main.WebSocket;
 
 import com.auth0.jwt.interfaces.Claim;
 import com.gaokao.main.DTO.Institution;
+import com.gaokao.main.Listener.PushMsg;
+import com.gaokao.main.Listener.SendMsg;
 import com.gaokao.main.Mapper.AnalysisMapper;
 import com.gaokao.main.Mapper.INSTMapper;
 import com.gaokao.main.Util.JWT_Util;
 import com.gaokao.main.Util.RedisTemplate_Util;
 import com.gaokao.main.VO.UserAnaly;
+import org.apache.naming.factory.SendMailFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 
 @Component(value = "heartbeatEndPoint")
 @ServerEndpoint("/heartbeat/{token}/{sort}/{id}")
@@ -26,6 +30,7 @@ public class HeartbeatEndPoint {
     private static INSTMapper instMapper;
     private static AnalysisMapper analysisMapper;
     private static RedisTemplate redisTemplate;
+    private SendMsg sendMsg;
 
     //用户在线时间
     public long onlineTime;
@@ -41,6 +46,9 @@ public class HeartbeatEndPoint {
 
     // 用于存储用户数据
     public static Map<UserAnaly, HeartbeatEndPoint> onlineUsers = new HashMap<UserAnaly, HeartbeatEndPoint>();
+
+    //时间
+    private Timer timer = null;
 
     public HeartbeatEndPoint() {
     }
@@ -91,6 +99,7 @@ public class HeartbeatEndPoint {
         // 保存对应的连接服务
         onlineUsers.put(this.userAnaly, this);
         System.out.println("map size:"+onlineUsers.size());
+        PushMsgToFront();
 //        sendInfo();
     }
 
@@ -135,6 +144,8 @@ public class HeartbeatEndPoint {
     @OnClose
     // 连接断开时被调用
     public void onClose(Session session) {
+
+        timer.cancel();
 
         //v为用户的兴趣向量
         int v = 0;
@@ -219,6 +230,11 @@ public class HeartbeatEndPoint {
         System.out.println("User hot:"+redis_res);
         System.out.println(Arrays.toString(strs));
         return strs;
+    }
+
+    private void PushMsgToFront() {
+        timer = new Timer(true);
+        timer.schedule(new PushMsg(this),15*1000,15*1000);
     }
 
 }

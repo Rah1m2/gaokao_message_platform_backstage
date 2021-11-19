@@ -28,7 +28,7 @@ public class WsListener implements ServletContextListener {
         System.out.println("定时器启动中......");
 
         //参数一是要做的事务所在类，其中必须继承TimerTask类，0表示任务立即开始无延迟，15*1000表示第一次执行后每隔15秒执行任务，60*60*1000表示一个小时；
-        timer.schedule(new SendMsg(),0,15*1000);
+//        timer.schedule(new SendMsg(),0,15*1000);
     }
 
 }

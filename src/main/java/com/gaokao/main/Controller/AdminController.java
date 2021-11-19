@@ -1,9 +1,12 @@
 package com.gaokao.main.Controller;
 
 import com.gaokao.main.Service.AdminService;
+import com.gaokao.main.VO.QueryForm;
 import com.gaokao.main.VO.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,8 +22,8 @@ public class AdminController {
 
     //返回用户列表
     @RequestMapping(value = "/reqUserList")
-    public ResponseData sendUserList() {
-        return adminService.getUserList();
+    public ResponseData sendUserList(QueryForm queryForm) {
+        return adminService.getUserList(queryForm);
     }
 
 }

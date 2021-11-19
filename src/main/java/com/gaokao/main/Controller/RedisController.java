@@ -23,4 +23,9 @@ public class RedisController {
         return redisService.getUserAnalysis(userAccount);
     }
 
+    @RequestMapping(value = "/reqUserBrowseCount")
+    public ResponseData sendUserBrowseCount() {
+        return redisService.getUserBrowseCount();
+    }
+
 }

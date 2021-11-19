@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -31,5 +32,23 @@ public class RedisServiceImpl implements RedisService {
         return ResponseData
                 .ok()
                 .setData("userAnalysis", valuesList);
+    }
+
+    public ResponseData getUserBrowseCount() {
+        RedisTemplate_Util redisTemplate_util = new RedisTemplate_Util(redisTemplate);
+        //查询键
+        Set<String> keySet = (Set<String>) redisTemplate_util.queryKey("school_query_db:user_vector:*:*");
+        Set<String> subKeySet = new HashSet<String>();
+        for (String key : keySet) {
+            int index = key.indexOf(":");
+            index = key.indexOf(":", index+1);
+            key = key.substring(0, index);
+            subKeySet.add(key);
+        }
+        System.out.println(subKeySet.toString());
+        String[] subKeys = (String[]) subKeySet.toArray();
+        return ResponseData
+                .ok()
+                .setData("userBrowse", 1);
     }
 }
