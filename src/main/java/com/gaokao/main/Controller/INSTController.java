@@ -36,5 +36,4 @@ public class INSTController {
         return instService.getINSTInfoByLabel(queryForm);
     }
 
-
 }

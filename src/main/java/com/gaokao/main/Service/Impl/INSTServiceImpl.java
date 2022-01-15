@@ -8,6 +8,7 @@ import com.gaokao.main.VO.ResponseData;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class INSTServiceImpl implements INSTService {
 
     private INSTMapper instMapper;
+    private RedisTemplate redisTemplate;
 
     public INSTServiceImpl() {
     }
@@ -32,6 +34,11 @@ public class INSTServiceImpl implements INSTService {
 
     public ResponseData getINSTInfoByLabel(QueryForm queryForm) {
 
+        //先查询redis
+
+        /*待完善*/
+
+        //如果redis中没有信息，才查询数据库，减小O/I开销
         Page page = PageHelper.startPage(queryForm.getPageNum(),queryForm.getPageSize());
 
         List<Institution> INSTInfoList =  instMapper.getINSTInfoByLabel(queryForm);

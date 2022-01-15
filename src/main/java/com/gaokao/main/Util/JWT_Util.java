@@ -21,9 +21,9 @@ public class JWT_Util {
      * @return
      * @expireTime
      */
-    public static String createToken(String user_name, String user_password){
+    public static String createToken(String user_name, String user_password, int amount){
         Calendar expireTime = Calendar.getInstance();
-        expireTime.add(Calendar.SECOND,604800);
+        expireTime.add(Calendar.SECOND,amount);
         // 签发时间
         Date iatDate = new Date();
 

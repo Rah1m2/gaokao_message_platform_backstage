@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         if (user.isEmpty() || !loginForm.getUser_password().equals(user.get(0).getUser_password()))
             return ResponseData.notFound();
 
-        String token = JWT_Util.createToken(loginForm.getUser_account(), loginForm.getUser_password());
+        String token = JWT_Util.createToken(loginForm.getUser_account(), loginForm.getUser_password(), 604800);
 
         Map<String, Claim> verified_token = JWT_Util.verifyToken(token);
 
