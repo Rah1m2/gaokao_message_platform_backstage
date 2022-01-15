@@ -24,9 +24,16 @@
     <!--拦截器配置-->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/user/**"/>
-            <mvc:exclude-mapping path="/user/login"/>
-            <mvc:exclude-mapping path="/user/register"/>
+            <mvc:mapping path="/user/reqUserInfo"/>
+            <mvc:mapping path="/user/sendEditedUserInfo"/>
+            <mvc:mapping path="/admin/reqUserList"/>
+            <mvc:mapping path="/redis/reqUserAnalysis"/>
+            <mvc:mapping path="/admin/checkToken"/>
+            <mvc:mapping path="/user/checkToken"/>
+            <mvc:mapping path="/admin/**"/>
+            <!--<mvc:exclude-mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/user/register"/>-->
+            <mvc:exclude-mapping path="/admin/login"/>
             <bean class="com.gaokao.main.Intercepretor.TokenInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
