@@ -1,9 +1,12 @@
 package com.gaokao.main.DTO;
 
+
+import java.io.Serializable;
+
 /**
  * 对应数据库中的institution_info表
  */
-public class Institution {
+public class Institution implements Serializable {
     private int institution_id;
     private String institution_name;
     private String institution_location;
@@ -104,4 +107,22 @@ public class Institution {
                 ", contact_number='" + contact_number + '\'' +
                 '}';
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Institution that = (Institution) o;
+//        return institution_location.equals(that.institution_location) &&
+//                institution_type.equals(that.institution_type) &&
+//                institution_feature.equals(that.institution_feature);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int hashCode = institution_location.hashCode();
+//        hashCode = 17*hashCode + institution_type.hashCode();
+//        hashCode = 17*hashCode + institution_feature.hashCode();
+//        return hashCode;
+//    }
 }

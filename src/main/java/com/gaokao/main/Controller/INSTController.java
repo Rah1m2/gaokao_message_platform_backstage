@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.POST;
 
 @RestController
 @RequestMapping("/INST")
 public class INSTController {
 
+    private HttpServletRequest request;
+
     private INSTService instService;
 
-    public INSTController() {
-    }
-
     @Autowired
-    public INSTController(INSTService instService) {
+    public INSTController(HttpServletRequest request, INSTService instService) {
+        this.request = request;
         this.instService = instService;
     }
 
@@ -32,8 +33,12 @@ public class INSTController {
 
     @RequestMapping(value = "/reqINSTInfoByLabel")
     public ResponseData sendINSTInfoByLabel(QueryForm queryForm) {
-        System.out.println("queryForm:"+queryForm);
+        queryForm.setToken(getHeader());
         return instService.getINSTInfoByLabel(queryForm);
+    }
+
+    private String getHeader() {
+        return request.getHeader("token");
     }
 
 }

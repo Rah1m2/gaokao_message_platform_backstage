@@ -52,6 +52,11 @@ public class AdminController {
         return adminService.changeAdminPassword(adminForm);
     }
 
+    @RequestMapping(value = "/checkToken")
+    public ResponseData checkToken() {
+        return ResponseData.ok();
+    }
+
     //test
     @RequestMapping(value = "/test")
     public ResponseData changeAdminPassword() {

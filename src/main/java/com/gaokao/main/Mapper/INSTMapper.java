@@ -21,4 +21,7 @@ public interface INSTMapper {
     //获取院校类型信息
     List<InstType> getINSTTypeInfo();
 
+    //获取院校数量
+    int getINSTCount(QueryForm queryForm);
+
 }

@@ -6,20 +6,24 @@ public class QueryForm {
     private String institution_location;
     private String institution_type;
     private String institution_feature;
+    private String token;
     private int PageNum;
     private int PageSize;
+    private int nextRequestBlock;
 
     public QueryForm() {
     }
 
-    public QueryForm(int major_id, String institution_name, String institution_location, String institution_type, String institution_feature, int pageNum, int pageSize) {
+    public QueryForm(int major_id, String institution_name, String institution_location, String institution_type, String institution_feature, String token, int pageNum, int pageSize, int nextRequestBlock) {
         this.major_id = major_id;
         this.institution_name = institution_name;
         this.institution_location = institution_location;
         this.institution_type = institution_type;
         this.institution_feature = institution_feature;
+        this.token = token;
         PageNum = pageNum;
         PageSize = pageSize;
+        this.nextRequestBlock = nextRequestBlock;
     }
 
     public int getMajor_id() {
@@ -62,6 +66,14 @@ public class QueryForm {
         this.institution_feature = institution_feature;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public int getPageNum() {
         return PageNum;
     }
@@ -78,6 +90,14 @@ public class QueryForm {
         PageSize = pageSize;
     }
 
+    public int getNextRequestBlock() {
+        return nextRequestBlock;
+    }
+
+    public void setNextRequestBlock(int nextRequestBlock) {
+        this.nextRequestBlock = nextRequestBlock;
+    }
+
     @Override
     public String toString() {
         return "QueryForm{" +
@@ -86,8 +106,10 @@ public class QueryForm {
                 ", institution_location='" + institution_location + '\'' +
                 ", institution_type='" + institution_type + '\'' +
                 ", institution_feature='" + institution_feature + '\'' +
+                ", token='" + token + '\'' +
                 ", PageNum=" + PageNum +
                 ", PageSize=" + PageSize +
+                ", nextRequestBlock=" + nextRequestBlock +
                 '}';
     }
 }
