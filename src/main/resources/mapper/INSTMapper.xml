@@ -35,4 +35,21 @@
         select * from institution_type_info
     </select>
 
+    <select id="getINSTCount" parameterType="com.gaokao.main.VO.QueryForm" resultType="java.lang.Integer">
+        select COUNT(*) from db_school_query.institution_info
+        <where>
+            <if test="institution_feature != ''.toString()">
+                institution_feature=#{institution_feature}
+            </if>
+            <if test="institution_location != '全部'.toString()">
+                and
+                    institution_location=#{institution_location}
+            </if>
+            <if test="institution_type != '全部'.toString()">
+                and
+                  institution_type=#{institution_type}
+            </if>
+        </where>
+    </select>
+
 </mapper>

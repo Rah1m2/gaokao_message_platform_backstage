@@ -104,7 +104,8 @@ public class INSTServiceImpl implements INSTService {
 
         return ResponseData.ok()
                 .setData("pageTotal", page.getTotal())
-                .setData("INSTInfoList", INSTInfoList);
+                .setData("INSTInfoList", INSTInfoList)
+                .setData("nextRequestBlock", -1);
     }
 
 }
